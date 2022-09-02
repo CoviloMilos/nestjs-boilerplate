@@ -15,6 +15,5 @@ const CONTROLLERS = [UserController];
 @Module({
   providers: [...SERVICES],
   controllers: [...CONTROLLERS],
-  exports: [...SERVICES],
 })
 export class UserModule {}
