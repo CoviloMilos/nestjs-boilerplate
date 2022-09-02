@@ -3,7 +3,7 @@ import { UserDTO } from '../../../models';
 import { USER_SERVICE } from '../../../utils/constants';
 import { IUserService } from '../services';
 
-@Controller('users')
+@Controller({ path: 'users', version: '1' })
 export class UserController {
   constructor(
     @Inject(USER_SERVICE) private readonly _userService: IUserService,
