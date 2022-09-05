@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# npm test uncomment this to run test check on each commit
+# Update this with other commands. Prettier, lint ...
