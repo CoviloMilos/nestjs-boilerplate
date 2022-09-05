@@ -11,6 +11,12 @@ export class UserController {
     @Inject(USER_SERVICE) private readonly _userService: IUserService,
   ) {}
 
+  @Get('')
+  @ApiResponse({ type: UserDTO, isArray: true })
+  findWeekOldUsers(): Promise<UserDTO[]> {
+    return this._userService.findWeekOldUsers();
+  }
+
   @Get('/:id')
   @ApiResponse({ type: UserDTO })
   findUser(@Param('id') id: string): Promise<UserDTO> {
