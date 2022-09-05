@@ -5,6 +5,7 @@ import { IUserService } from '../services';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UserDTO } from '../../../dto/response';
 import { CreateUserDTO } from '../../../dto/request';
+import { UuidValidator } from '../../../pipes';
 
 @ApiTags('users')
 @Controller({ path: 'users', version: '1' })
@@ -21,7 +22,7 @@ export class UserController {
 
   @Get('/:id')
   @ApiResponse({ type: UserDTO })
-  findUser(@Param('id') id: string): Promise<UserDTO> {
+  findUser(@Param('id', new UuidValidator()) id: string): Promise<UserDTO> {
     return this._userService.findUser(id);
   }
 

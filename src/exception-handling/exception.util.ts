@@ -1,6 +1,7 @@
-import { BadRequestException, HttpStatus } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 import { ErrorResponse } from '../dto/response';
 import {
+  BadRequestException,
   BaseException,
   ResourceNotFoundException,
   UserAlreadyExistException,

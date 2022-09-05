@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, Transform, TransformFnParams } from 'class-transformer';
-import { DateHelper } from '../../utils/helpers';
+import { DateHelperService } from '../../utils/helpers';
 
 const calculateDaysRegistered = (params: TransformFnParams) => {
   const createdAt = params.obj['createdAt'];
-  if (createdAt) return DateHelper.timeDiffInDays(createdAt);
+  if (createdAt) return DateHelperService.timeDiffInDays(createdAt);
   else return null;
 };
 export class UserDTO {

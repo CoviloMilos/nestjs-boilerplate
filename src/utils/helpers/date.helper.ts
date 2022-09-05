@@ -1,6 +1,6 @@
 import * as moment from 'moment';
 
-export class DateHelper {
+export class DateHelperService {
   static timeDiffInDays(value: Date): number {
     return moment().diff(value, 'd');
   }

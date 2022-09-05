@@ -4,8 +4,10 @@ import {
   PipeTransform,
 } from '@nestjs/common/interfaces/features/pipe-transform.interface';
 import { validate } from 'class-validator';
-import { BadRequestException } from '@nestjs/common';
-import { ValidationException } from '../exception-handling/exceptions';
+import {
+  BadRequestException,
+  ValidationException,
+} from '../exception-handling/exceptions';
 import { FieldErrorPayload } from '../dto/response';
 
 export class ValidationHandler implements PipeTransform {

@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from '../../../../entities';
 import { Repository, MoreThan } from 'typeorm';
 import { mapToClass, QueryFilter } from '../../../../utils';
-import { DateHelper } from '../../../../utils/helpers';
+import { DateHelperService } from '../../../../utils/helpers';
 import {
   ResourceNotFoundException,
   UserAlreadyExistException,
@@ -38,7 +38,7 @@ export class UserService implements IUserService {
 
   async findWeekOldUsers(): Promise<UserDTO[]> {
     const condition: QueryFilter = {
-      createdAt: MoreThan(DateHelper.getWeekAgoDate()),
+      createdAt: MoreThan(DateHelperService.getWeekAgoDate()),
     };
     const users = await this._userRepo.find({ where: condition });
 

@@ -15,7 +15,7 @@ export class BadRequestException extends BaseException {
   constructor(message: string, error?: Error) {
     super(HttpStatus.BAD_REQUEST);
     this._message = message;
-    this._exception = error.message || '';
+    this._exception = error?.message || '';
   }
 
   getPayload():
