@@ -1,5 +1,9 @@
 import { Expose } from 'class-transformer';
-import { CreateDateColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  CreateDateColumn,
+  UpdateDateColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export abstract class CustomBaseEntity {
   @Expose()
@@ -11,6 +15,6 @@ export abstract class CustomBaseEntity {
   createdAt: Date;
 
   @Expose()
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updatedAt: Date;
 }

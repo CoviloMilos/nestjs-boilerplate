@@ -4,6 +4,8 @@ import {
   VersioningType,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ExceptionHandler } from '../exception-handling/exception.handler';
+import { ValidationHandler } from '../pipes';
 import { setupSwagger } from './swagger';
 
 export const configureApp = (app: INestApplication, config: ConfigService) => {
@@ -16,6 +18,9 @@ export const configureApp = (app: INestApplication, config: ConfigService) => {
 
   // Display swagger only in local and dev env
   if (['dev', 'local'].includes(process.env.NODE_ENV)) setupSwagger(app);
+
+  app.useGlobalFilters(new ExceptionHandler());
+  app.useGlobalPipes(new ValidationHandler());
 };
 
 export default configureApp;

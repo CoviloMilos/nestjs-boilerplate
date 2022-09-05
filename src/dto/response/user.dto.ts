@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Expose, Transform, TransformFnParams } from 'class-transformer';
-import { DateHelper } from '../utils/helpers';
+import { DateHelper } from '../../utils/helpers';
 
 const calculateDaysRegistered = (params: TransformFnParams) => {
   const createdAt = params.obj['createdAt'];
