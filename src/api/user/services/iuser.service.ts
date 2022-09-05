@@ -1,5 +1,5 @@
-import { UserDTO } from '../../../models';
+import { UserDTO } from '../../../dto';
 
 export interface IUserService {
-  findUser(): Promise<UserDTO>;
+  findUser(id: string): Promise<UserDTO>;
 }

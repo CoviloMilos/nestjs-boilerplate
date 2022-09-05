@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { UserDTO } from '../../../../models';
+import { UserDTO } from '../../../../dto';
 import { IUserService } from '../iuser.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { UserEntity } from '../../../../entities';
+import { Repository } from 'typeorm';
+import { mapToClass } from '../../../../utils';
 
 @Injectable()
 export class UserService implements IUserService {
-  findUser(): Promise<UserDTO> {
-    return Promise.resolve({
-      id: '1234',
-      name: 'Milos',
-      email: 'milos.covilo@mvpworkshop.co',
-    });
+  constructor(
+    @InjectRepository(UserEntity)
+    private readonly _userRepo: Repository<UserEntity>,
+  ) {}
+  async findUser(id: string): Promise<UserDTO> {
+    const user = await this._userRepo.findOneBy({ id });
+    return mapToClass(user, UserDTO);
   }
 }

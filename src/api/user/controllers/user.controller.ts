@@ -1,5 +1,5 @@
-import { Controller, Get, Inject } from '@nestjs/common';
-import { UserDTO } from '../../../models';
+import { Controller, Get, Inject, Param } from '@nestjs/common';
+import { UserDTO } from '../../../dto';
 import { USER_SERVICE } from '../../../utils/constants';
 import { IUserService } from '../services';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -11,9 +11,9 @@ export class UserController {
     @Inject(USER_SERVICE) private readonly _userService: IUserService,
   ) {}
 
-  @Get('')
+  @Get('/:id')
   @ApiResponse({ type: UserDTO })
-  findUser(): Promise<UserDTO> {
-    return this._userService.findUser();
+  findUser(@Param('id') id: string): Promise<UserDTO> {
+    return this._userService.findUser(id);
   }
 }
