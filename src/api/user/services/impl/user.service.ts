@@ -6,18 +6,16 @@ import { UserEntity } from '../../../../entities';
 import { Repository, MoreThan } from 'typeorm';
 import { mapToClass, QueryFilter } from '../../../../utils';
 import { DateHelperService } from '../../../../utils/helpers';
-import {
-  ResourceNotFoundException,
-  UserAlreadyExistException,
-} from '../../../../exception-handling';
-import { Resources } from '../../../../utils/enums';
+import { UserAlreadyExistException } from '../../../../exception-handling';
 import { CreateUserDTO } from '../../../../dto/request';
+import { UserRepository } from '../../../../repository/user.repository';
 
 @Injectable()
 export class UserService implements IUserService {
   constructor(
     @InjectRepository(UserEntity)
     private readonly _userRepo: Repository<UserEntity>,
+    readonly repo: UserRepository,
   ) {}
 
   async createUser(user: CreateUserDTO): Promise<UserDTO> {
@@ -31,8 +29,7 @@ export class UserService implements IUserService {
   }
 
   async findUser(id: string): Promise<UserDTO> {
-    const user = await this._userRepo.findOneBy({ id });
-    if (!user) throw new ResourceNotFoundException(Resources.USER);
+    const user = await this.repo.findOneById(id);
     return mapToClass(user, UserDTO);
   }
 

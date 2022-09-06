@@ -4,12 +4,14 @@ import { UserController } from './controllers';
 import { UserService } from './services';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from '../../entities';
+import { UserRepository } from '../../repository/user.repository';
 
 const SERVICES = [
   {
     provide: USER_SERVICE,
     useClass: UserService,
   },
+  UserRepository,
 ];
 
 const CONTROLLERS = [UserController];
