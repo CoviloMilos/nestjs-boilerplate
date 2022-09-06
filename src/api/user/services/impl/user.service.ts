@@ -34,10 +34,10 @@ export class UserService implements IUserService {
   }
 
   async findWeekOldUsers(): Promise<UserDTO[]> {
-    const condition: QueryFilter = {
+    const where: QueryFilter = {
       createdAt: MoreThan(DateHelperService.getWeekAgoDate()),
     };
-    const users = await this._userRepo.find({ where: condition });
+    const users = await this._userRepo.find({ where });
 
     return users.map((user) => mapToClass(user, UserDTO));
   }
