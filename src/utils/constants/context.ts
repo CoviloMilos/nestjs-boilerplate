@@ -1,3 +1,4 @@
 const CORRELATION_ID = 'X-Correlation-ID';
-
-export { CORRELATION_ID };
+const HTTP = 'HTTP';
+const ERROR_HANDLER = 'ERROR_HANDLER';
+export { CORRELATION_ID, HTTP, ERROR_HANDLER };

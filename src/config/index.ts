@@ -7,6 +7,7 @@ const envVars = () => {
       port: process.env.PORT,
       serviceName: process.env.SERVICE_NAME,
       origin: process.env.ORIGIN,
+      env: process.env.NODE_ENV,
     },
     db: {
       host: process.env.DB_HOST,

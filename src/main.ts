@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import configureApp from './config/app.config';
+import { Logger } from './config/logger';
 
 const startupVars = (app: INestApplication) => {
   const configService = app.get(ConfigService);
@@ -17,6 +18,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const { port, serviceName, host, configService } = startupVars(app);
+
+  app.useLogger(new Logger(configService.get('app.env')));
 
   configureApp(app, configService);
 

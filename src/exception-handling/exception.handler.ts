@@ -1,6 +1,13 @@
-import { ArgumentsHost, Catch, ExceptionFilter } from '@nestjs/common';
+import {
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpStatus,
+  Logger,
+} from '@nestjs/common';
+import { logError } from '../config/logger';
 import { ErrorResponse } from '../dto/response';
-import { CORRELATION_ID } from '../utils/constants';
+import { CORRELATION_ID, ERROR_HANDLER } from '../utils/constants';
 import {
   createGeneralErrorResponse,
   createSpecificErrorResponse,
@@ -14,6 +21,8 @@ import { ValidationException } from './exceptions';
 
 @Catch()
 export class ExceptionHandler implements ExceptionFilter {
+  private logger = new Logger(ERROR_HANDLER);
+
   catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
@@ -33,6 +42,15 @@ export class ExceptionHandler implements ExceptionFilter {
       errorResponse = createUnknowError();
     }
 
+    this.logger.error(
+      logError(
+        correlationId,
+        JSON.stringify(errorResponse.payload),
+        HttpStatus.INTERNAL_SERVER_ERROR === errorResponse.httpStatus
+          ? exception.stack
+          : '',
+      ),
+    );
     response.status(errorResponse.httpStatus).json({
       httpStatus: errorResponse.httpStatus,
       payload: errorResponse.payload,
