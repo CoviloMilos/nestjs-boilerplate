@@ -1,5 +1,7 @@
 import { Injectable, LoggerService } from '@nestjs/common';
 import * as winston from 'winston';
+import CloudWatchTransport from 'winston-cloudwatch';
+
 enum LogLevels {
   INFO = 'info',
   DEBUG = 'debug',
@@ -32,7 +34,22 @@ export class Logger implements LoggerService {
           return `${info.timestamp} [${info.level}] [${info.context}] ${info.message}`;
         }),
       ),
-      transports: [new winston.transports.Console()], // TODO add transport for cloud watch
+      transports: [
+        new winston.transports.Console(),
+        // new CloudWatchTransport({
+        //   name: 'Cloudwatch Logs',
+        //   logGroupName: process.env.CLOUDWATCH_GROUP_NAME,
+        //   logStreamName: process.env.CLOUDWATCH_STREAM_NAME,
+        //   awsAccessKeyId: process.env.AWS_ACCESS_KEY,
+        //   awsSecretKey: process.env.AWS_KEY_SECRET,
+        //   awsRegion: process.env.CLOUDWATCH_AWS_REGION,
+        //   messageFormatter: function (item) {
+        //     return (
+        //       item.level + ': ' + item.message + ' ' + JSON.stringify(item.meta)
+        //     );
+        //   },
+        // }),
+      ],
     });
   }
 
