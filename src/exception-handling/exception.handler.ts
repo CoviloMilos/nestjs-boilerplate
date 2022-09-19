@@ -5,7 +5,6 @@ import {
   HttpStatus,
   Logger,
 } from '@nestjs/common';
-import { logError } from '../config/logger';
 import { ErrorResponse } from '../dto/response';
 import { CORRELATION_ID, ERROR_HANDLER } from '../utils/constants';
 import {
@@ -42,15 +41,16 @@ export class ExceptionHandler implements ExceptionFilter {
       errorResponse = createUnknowError();
     }
 
-    this.logger.error(
-      logError(
-        correlationId,
-        JSON.stringify(errorResponse.payload),
-        HttpStatus.INTERNAL_SERVER_ERROR === errorResponse.httpStatus
-          ? exception.stack
-          : '',
-      ),
-    );
+    const log: Record<string, any> = {
+      correlationId,
+      payload: errorResponse.payload,
+    };
+
+    if (HttpStatus.INTERNAL_SERVER_ERROR === errorResponse.httpStatus) {
+      log.stack = exception.stack;
+    }
+    this.logger.error(JSON.stringify(log, null, 4));
+
     response.status(errorResponse.httpStatus).json({
       httpStatus: errorResponse.httpStatus,
       payload: errorResponse.payload,

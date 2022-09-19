@@ -19,7 +19,7 @@ async function bootstrap() {
 
   const { port, serviceName, host, configService } = startupVars(app);
 
-  app.useLogger(new Logger(configService.get('app.env')));
+  app.useLogger(new Logger(configService));
 
   configureApp(app, configService);
 

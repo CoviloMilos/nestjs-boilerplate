@@ -1,7 +1,6 @@
 import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { NextFunction } from 'express';
 import { v4 as uuidv4 } from 'uuid';
-import { logHttp } from '../config/logger';
 import { CORRELATION_ID, HTTP } from '../utils/constants';
 
 @Injectable()
@@ -12,7 +11,13 @@ export class RequestMiddleware implements NestMiddleware {
 
     req.headers[CORRELATION_ID] = correlationId;
 
-    this.logger.log(logHttp(correlationId, req.url, req.method));
+    this.logger.log(
+      JSON.stringify(
+        { route: req.url, method: req.method, correlationId },
+        null,
+        4,
+      ),
+    );
 
     next();
   }

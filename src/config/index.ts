@@ -16,6 +16,15 @@ const envVars = () => {
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
     },
+    aws: {
+      accessKey: process.env.AWS_ACCESS_KEY,
+      secret: process.env.AWS_KEY_SECRET,
+      region: process.env.AWS_REGION,
+    },
+    cloudWatch: {
+      groupName: process.env.CLOUDWATCH_GROUP_NAME,
+      streamName: process.env.CLOUDWATCH_STREAM_NAME,
+    },
   };
 };
 
