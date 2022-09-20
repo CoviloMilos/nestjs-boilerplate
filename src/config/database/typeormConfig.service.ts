@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
 import { entities } from '../../entities';
 
 @Injectable()
@@ -23,7 +24,7 @@ export default class TypeOrmConfig implements TypeOrmOptionsFactory {
     this.port = this.config.get<number>('db.port');
     this.username = this.config.get<string>('db.username');
     this.password = this.config.get<string>('db.password');
-    this.synchronize = this.config.get<string>('app.environment') === 'test';
+    this.synchronize = this.config.get<string>('app.env') === 'local';
   }
 
   createTypeOrmOptions = (): TypeOrmModuleOptions => {

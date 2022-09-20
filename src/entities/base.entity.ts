@@ -3,9 +3,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   PrimaryGeneratedColumn,
+  BaseEntity,
 } from 'typeorm';
 
-export abstract class CustomBaseEntity {
+export abstract class CustomBaseEntity extends BaseEntity {
   @Expose()
   @PrimaryGeneratedColumn('uuid')
   id: string;

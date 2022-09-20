@@ -18,7 +18,8 @@
     "test:watch": "test --watch",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "typeorm": "typeorm-ts-node-esm"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
