@@ -62,12 +62,10 @@ export class Logger implements LoggerService {
     this.logger = winston.createLogger({
       levels: winston.config.npm.levels,
       level,
-      transports: [consoleTransport],
     });
 
-    if (['dev', 'test', 'prod'].includes(env)) {
-      this.logger.add(cloudWatchTransport(env, configService));
-    }
+    if (env === 'local') this.logger.add(consoleTransport);
+    else this.logger.add(cloudWatchTransport(env, configService));
   }
 
   log(message: any, context: string): void {
