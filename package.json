@@ -19,7 +19,11 @@
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky install",
-    "typeorm": "typeorm-ts-node-esm"
+    "typeorm": "typeorm-ts-node-esm",
+    "migration:generate": "dotenv -e .env -- npm run typeorm migration:generate -d src/config/database/dataSource.ts",
+    "migration:run": "dotenv -e .env -- npm run typeorm migration:run -d src/config/database/dataSource.ts",
+    "migration:revert": "dotenv -e .env -- npm run typeorm migration:revert -d src/config/database/dataSource.ts",
+    "migration:create": "dotenv -e .env -- npm run typeorm migration:create"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
@@ -50,6 +54,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "dotenv-cli": "^6.0.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",

@@ -37,7 +37,7 @@ const envConfig = () => {
 
   // only for local development, in other environments export env variables
   if (process.env.NODE_ENV === 'local') {
-    options.envFilePath = [`.env.${process.env.NODE_ENV}`];
+    options.envFilePath = [`.env`];
   }
 
   return options;
