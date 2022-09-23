@@ -5,4 +5,5 @@ export * from './base.entity';
 export * from './user.entity';
 export * from './post.entity';
 
-export const entities = [UserEntity, PostEntity];
+const entities = [UserEntity, PostEntity];
+export default entities;

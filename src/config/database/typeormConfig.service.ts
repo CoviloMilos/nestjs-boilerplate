@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
-import { DataSource } from 'typeorm';
-import { entities } from '../../entities';
+import entities from '../../entities';
 
 @Injectable()
 export default class TypeOrmConfig implements TypeOrmOptionsFactory {
@@ -37,7 +36,7 @@ export default class TypeOrmConfig implements TypeOrmOptionsFactory {
       database: this.name,
       synchronize: this.synchronize,
       logging: false,
-      entities: entities,
+      entities,
     };
   };
 }

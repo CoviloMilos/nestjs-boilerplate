@@ -19,11 +19,11 @@
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky install",
-    "typeorm": "typeorm-ts-node-esm",
-    "migration:generate": "dotenv -e .env -- npm run typeorm migration:generate -d src/config/database/dataSource.ts",
-    "migration:run": "dotenv -e .env -- npm run typeorm migration:run -d src/config/database/dataSource.ts",
-    "migration:revert": "dotenv -e .env -- npm run typeorm migration:revert -d src/config/database/dataSource.ts",
-    "migration:create": "dotenv -e .env -- npm run typeorm migration:create"
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d ./src/config/database/dataSource.ts",
+    "migration:create": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:create ./src/config/database/migrations/$npm_config_name",
+    "migration:generate": "npm run typeorm -- migration:generate ./src/config/database/migrations/$npm_config_name",
+    "migration:run": "npm run typeorm migration:run",
+    "migration:revert": "npm run typeorm migration:revert"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

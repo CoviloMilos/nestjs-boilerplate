@@ -35,13 +35,6 @@ const cloudWatchTransport = (env: string, configService: ConfigService) => {
     name: `NestJS boilerplate logs - ${env}`,
     logGroupName: `${configService.get('cloudWatch.groupName')}-${env}`,
     logStreamName: `${configService.get('cloudWatch.streamName')}-${env}`,
-    awsOptions: {
-      credentials: {
-        accessKeyId: configService.get('aws.accessKey'),
-        secretAccessKey: configService.get('aws.secret'),
-      },
-      region: configService.get('aws.region'),
-    },
     messageFormatter: (item) => {
       return ` [${item.level}]:  [${item.context}] ${item.message}`;
     },

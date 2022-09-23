@@ -34,5 +34,14 @@ $ npm run test:cov
 
 ```bash
 # create migration
-$ npm run migration:create ./src/config/database/<migration-name>
+$ npm run migration:create --name=users-seed
+
+# generate migration
+$ npm run migration:generate --name=init
+
+# run migration
+$ npm run migration:run
+
+# revert migration
+$ npm run migration:run
 ```
