@@ -8,7 +8,7 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ npm start
 
 # watch mode
 $ npm run start:dev
@@ -43,5 +43,5 @@ $ npm run migration:generate --name=init
 $ npm run migration:run
 
 # revert migration
-$ npm run migration:run
+$ npm run migration:revert
 ```

@@ -1,2 +1,2 @@
 export * from './validation.pipe';
-export * from './uuidv1.pipe';
+export * from './uuid.pipe';

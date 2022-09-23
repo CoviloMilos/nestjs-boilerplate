@@ -1,7 +1,7 @@
-import { UUID_V1_PATTERN } from '../constants';
+import { UUID_PATTERN } from '../constants';
 
 export class HelperService {
-  static isValidUuidV1(value: string) {
-    return UUID_V1_PATTERN.test(value);
+  static isValidUuid(value: string) {
+    return UUID_PATTERN.test(value);
   }
 }

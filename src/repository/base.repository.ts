@@ -11,12 +11,12 @@ export abstract class BaseRepository<
   }
 
   async findOneById(id: string): Promise<T> {
-    const user = await this.createQueryBuilder()
+    const entity = await this.createQueryBuilder()
       .where('id = :id', { id })
       .getOne();
 
-    if (!user) throw new ResourceNotFoundException(this.resource);
+    if (!entity) throw new ResourceNotFoundException(this.resource);
 
-    return user;
+    return entity;
   }
 }
