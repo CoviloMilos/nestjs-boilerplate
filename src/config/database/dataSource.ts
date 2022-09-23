@@ -17,7 +17,7 @@ export const TypeormDataSource = new DataSource({
   synchronize: false,
   migrationsRun: false,
   logging: true,
-  entities: entities,
+  entities,
   migrations,
 });
 
