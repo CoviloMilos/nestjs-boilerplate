@@ -12,5 +12,3 @@ export class PostEntity extends CustomBaseEntity {
   @Column()
   body: string;
 }
-
-// npx typeorm-ts-node-esm migration:generate ./src/config/database/migrations/update-post-table -d ./src/config/database/dataSource.ts
